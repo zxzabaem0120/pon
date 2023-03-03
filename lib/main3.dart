@@ -11,9 +11,13 @@ class A1 extends StatefulWidget {
 
 class _A1State extends State<A1> {
   TextEditingController? p1;
-  String p2 = '';
+  TextEditingController? p2;
+  TextEditingController? p3;
+  TextEditingController? p4;
+  String s1 = '';
   Widget textFieldInput(
       {String? title,
+      title2,
       TextEditingController? textinput,
       void Function(String)? method,
       double width = 160,
@@ -22,7 +26,7 @@ class _A1State extends State<A1> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 10, top: 0),
+          padding: const EdgeInsets.only(right: 10, top: 0 ,),
           child: Text(
             title!,
             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -40,6 +44,13 @@ class _A1State extends State<A1> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, top: 0),
+          child: Text(
+            title2!,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
       ],
     );
   }
@@ -49,12 +60,12 @@ class _A1State extends State<A1> {
       List<DropdownMenuItem<Object>>? item,
       void Function(Object?)? onchang}) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 20),
       child: Card(
         color: const Color.fromARGB(255, 230, 230, 230),
         child: SizedBox(
           height: 40,
-          width: 70,
+          width: 80,
           child: DropdownButton(
             icon:
                 const Icon(Icons.arrow_drop_down_rounded, color: Colors.black),
@@ -82,16 +93,16 @@ class _A1State extends State<A1> {
         centerTitle: true,
         title:
             Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-          Text("คำนวณการผ่อนชำระ"),
+          Text("PS'  Installment payment app "),
         ]),
       ),
       body: Column(children: [
         const Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(20),
           child: Text(
             'การผ่อนชำระ',
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontWeight: FontWeight.bold),
           ),
@@ -101,58 +112,88 @@ class _A1State extends State<A1> {
             Center(
               child: Column(children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: textFieldInput(title: 'ยอดการกู้', textinput: p1),
+                  padding: const EdgeInsets.only(top: 10 ,left: 20),
+                  child: textFieldInput(
+                      title: 'ยอดการกู้', title2: 'บาท', textinput: p1),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30, right: 30),
-                  child: textFieldInput(title: 'ดอกเบี้ย %ต่อปี'),
+                  child: textFieldInput(
+                      title: 'ดอกเบี้ย % ต่อปี', title2: '%', textinput: p2),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 50),
-                  child: textFieldInput(title: 'ผ่อนชำระต่อเดือน'),
+                  padding: const EdgeInsets.only(top: 30, right: 20),
+                  child: textFieldInput(
+                      title: 'ผ่อนชำระต่องวด', title2: 'งวด', textinput: p3),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 30),
-                  child: textFieldInput(title: 'ดอกเบี้ย %ต่อปี'),
+                  padding: const EdgeInsets.only(top: 30, right: 10),
+                  child: textFieldInput(
+                      title: 'ระยะเวลาที่กู้', title2: 'ปี', textinput: p4),
                 ),
+               
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 20),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'วันที่เริ่มชำระ',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      dropdownInput(context,
-                          dopdown: Appdata.d,
-                          item: Appdata.day
-                              .map((value) => DropdownMenuItem(
-                                  value: value, child: Text(value)))
-                              .toList(), onchang: (value) {
-                        Appdata.d = value;
-                      }),
-                      dropdownInput(context,
-                          dopdown: Appdata.m,
-                          item: Appdata.month
-                              .map((value) => DropdownMenuItem(
-                                  value: value, child: Text(value)))
-                              .toList(), onchang: (value) {
-                        Appdata.m = value;
-                      }),
-                      dropdownInput(context,
-                          dopdown: Appdata.y,
-                          item: Appdata.year
-                              .map((value) => DropdownMenuItem(
-                                  value: value, child: Text(value)))
-                              .toList(), onchang: (value) {
-                        Appdata.y = value;
-                      }),
-                    ],
+                  padding: const EdgeInsets.only(left: 20, top: 30,right: 20),
+                  child: FittedBox 
+                  ( fit: BoxFit.fitWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'วันที่เริ่มชำระ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        dropdownInput(context,
+                            dopdown: Appdata.d,
+                            item: Appdata.day
+                                .map((value) => DropdownMenuItem(
+                                    value: value, child: Padding(
+                                      padding: const EdgeInsets.only(left: 20, top: 5,right: 5),
+                                      child: FittedBox(
+                                        child: Text(value),
+                                      ),
+                                    )))
+                                .toList(), onchang: (value) {
+                          setState(() {
+                            Appdata.d = value;
+                          });
+                        }),
+                        dropdownInput(context,
+                            dopdown: Appdata.m,
+                            item: Appdata.month
+                                .map((value) => DropdownMenuItem(
+                                    value: value, child: Padding(
+                                      padding: const EdgeInsets.only(left: 20, top: 5,right: 5),
+                                      child: FittedBox(
+                                        child: Text(value),
+                                      ),
+                                    )))
+                                .toList(), onchang: (value) {
+                          setState(() {
+                            Appdata.m = value;
+                          });
+                        }),
+                        dropdownInput(context,
+                            dopdown: Appdata.y,
+                            item: Appdata.year
+                                .map((value) => DropdownMenuItem(
+                                    value: value, child: Padding(
+                                      padding: const EdgeInsets.only(left: 15, top: 5,right: 5),
+                                      child: FittedBox(
+                                        child: Text(value),
+                                      ),
+                                    )))
+                                .toList(), onchang: (value) {
+                          setState(() {
+                            Appdata.y = value;
+                          });
+                        }),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 40),
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -172,7 +213,7 @@ class _A1State extends State<A1> {
                     child: const Text('คำนวณ'),
                   ),
                 ),
-                Text(p2)
+                Text(s1)
               ]),
             ),
           ],

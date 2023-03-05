@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:project/main3.dart';
 
@@ -16,8 +13,7 @@ class Pasee extends StatefulWidget {
 }
 
 class _PaseeState extends State<Pasee> {
-  TextEditingController? p1;
-  String p2 = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -89,11 +85,11 @@ class Appdata {
     '2574',
     '2575'
   ];
-  static var d;
-  static var m;
-  static var y;
+  static String? d;
+  static String? m;
+  static String? y;
   static double d1(var m1) {
-    var d2;
+    double d2;
     if (m1 == '2') {
       d2 = 28;
     } else if (m1 == '4' || m1 == '6' || m1 == '9' || m1 == '11') {
@@ -110,7 +106,7 @@ class Appdata {
       required double month,
       required int count}) {
     double moneyPayForMonth = money / count;
-    double currentmoney = money;
+    double currentmoney = money + moneyPayForMonth;
     double newMonth = month;
     List<double> dataMoney = [];
     for (int index = 0; index < count; index++) {

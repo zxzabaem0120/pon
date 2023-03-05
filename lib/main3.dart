@@ -10,10 +10,10 @@ class A1 extends StatefulWidget {
 }
 
 class _A1State extends State<A1> {
-  TextEditingController? p1;
-  TextEditingController? p2;
-  TextEditingController? p3;
-  TextEditingController? p4;
+  TextEditingController p1 = TextEditingController(text: '');
+  TextEditingController p2 = TextEditingController(text: '');
+  TextEditingController p3 = TextEditingController(text: '');
+  TextEditingController p4 = TextEditingController(text: '');
   String s1 = '';
   Widget textFieldInput(
       {String? title,
@@ -26,7 +26,10 @@ class _A1State extends State<A1> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 10, top: 0 ,),
+          padding: const EdgeInsets.only(
+            right: 10,
+            top: 0,
+          ),
           child: Text(
             title!,
             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -113,9 +116,12 @@ class _A1State extends State<A1> {
               Center(
                 child: Column(children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10 ,left: 20),
+                    padding: const EdgeInsets.only(top: 10, left: 20),
                     child: textFieldInput(
-                        title: 'ยอดการกู้', title2: 'บาท', textinput: p1,),
+                      title: 'ยอดการกู้',
+                      title2: 'บาท',
+                      textinput: p1,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30, right: 30),
@@ -128,15 +134,10 @@ class _A1State extends State<A1> {
                         title: 'ผ่อนชำระต่องวด', title2: 'งวด', textinput: p3),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, right: 10),
-                    child: textFieldInput(
-                        title: 'ระยะเวลาที่กู้', title2: 'ปี', textinput: p4),
-                  ),
-                 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 30,right: 20),
-                    child: FittedBox 
-                    ( fit: BoxFit.fitWidth,
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 30, right: 20),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -148,46 +149,51 @@ class _A1State extends State<A1> {
                               dopdown: Appdata.d,
                               item: Appdata.day
                                   .map((value) => DropdownMenuItem(
-                                      value: value, child: Padding(
-                                        padding: const EdgeInsets.only(left: 20, top: 5,right: 5),
+                                      value: value,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, top: 5, right: 5),
                                         child: FittedBox(
                                           child: Text(value),
                                         ),
                                       )))
                                   .toList(), onchang: (value) {
                             setState(() {
-                              Appdata.d = value;
-                            
+                              Appdata.d = value as String?;
                             });
                           }),
                           dropdownInput(context,
                               dopdown: Appdata.m,
                               item: Appdata.month
                                   .map((value) => DropdownMenuItem(
-                                      value: value, child: Padding(
-                                        padding: const EdgeInsets.only(left: 20, top: 5,right: 5),
+                                      value: value,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, top: 5, right: 5),
                                         child: FittedBox(
                                           child: Text(value),
                                         ),
                                       )))
                                   .toList(), onchang: (value) {
                             setState(() {
-                              Appdata.m = value;
+                              Appdata.m = value as String?;
                             });
                           }),
                           dropdownInput(context,
                               dopdown: Appdata.y,
                               item: Appdata.year
                                   .map((value) => DropdownMenuItem(
-                                      value: value, child: Padding(
-                                        padding: const EdgeInsets.only(left: 15, top: 5,right: 5),
+                                      value: value,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15, top: 5, right: 5),
                                         child: FittedBox(
                                           child: Text(value),
                                         ),
                                       )))
                                   .toList(), onchang: (value) {
                             setState(() {
-                              Appdata.y = value;
+                              Appdata.y = value as String?;
                             });
                           }),
                         ],
@@ -199,12 +205,23 @@ class _A1State extends State<A1> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          //p2 = 'hello';
                           Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const V1()))
-                              .then((value) {
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => V1(
+                                      count: int.parse(p3.text),
+                                      money: double.parse(p1.text),
+                                      listinterest: Appdata.colculaterPasy(
+                                          count: int.parse(p3.text),
+                                          interest: double.parse(p2.text),
+                                          month:
+                                              Appdata.d1(Appdata.m.toString()),
+                                          money: double.parse(p1.text)),
+                                      calfinishcount: Appdata.moneyAll(
+                                          double.parse(p1.text),
+                                          double.parse(p2.text),
+                                          double.parse(p3.text))))).then(
+                              (value) {
                             setState(() {});
                           });
                         });

@@ -28,13 +28,24 @@ class _V1State extends State<V1> {
               },
               icon: const Icon(Icons.arrow_back_ios_new)),
         ),
-        backgroundColor: const Color.fromARGB(255, 173, 163, 19),
+        backgroundColor: const Color.fromARGB(255, 16, 160, 86),
         centerTitle: true,
         title: Padding(
           padding: const EdgeInsets.only(right: 50),
           child:
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-            Text("ตารางการผ่อนชำระ"),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children:[
+            const Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Text("ตารางการผ่อนชำระ"),
+            ),
+            Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Image.asset(
+              'assets/images/เงิน.png',
+              width: 50,
+              height: 60,
+            ),
+            ),
           ]),
         ),
       ),

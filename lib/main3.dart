@@ -141,7 +141,7 @@ class _A1State extends State<A1> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'วันที่เริ่มชำระ',
+                            'วันที่เริ้มชำระ',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           dropdownInput(context,
@@ -157,6 +157,7 @@ class _A1State extends State<A1> {
                                   .toList(), onchang: (value) {
                             setState(() {
                               Appdata.d = value;
+                            
                             });
                           }),
                           dropdownInput(context,

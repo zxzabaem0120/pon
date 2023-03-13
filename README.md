@@ -33,6 +33,6 @@
 <br>
 
 
-<img src="https://user-images.githubusercontent.com/60004151/224626486-abdf4449-319c-4308-a5c9-c7e779de078e.gif
+<img src="https://user-images.githubusercontent.com/60004151/224639662-c12fff44-9bf0-492f-8a51-da2efff7ffba.gif
 " alt="GPA_Home" width="400" height="600" style="display: block; margin: 0 auto" align="center"/><br>
 

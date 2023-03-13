@@ -32,7 +32,6 @@
 <br>
 <br>
 
-
-<img src="https://user-images.githubusercontent.com/60004151/224626486-abdf4449-319c-4308-a5c9-c7e779de078e.gif
-" alt="GPA_Home" width="400" height="600" style="display: block; margin: 0 auto" align="center"/><br>
-
+<p align="center">
+<img src="https://user-images.githubusercontent.com/60004151/224648315-8aea487f-91ae-4be6-8023-9eab049ad382.gif" alt="GPA_Home" width="400" height="600" style="display: block; margin: 0 auto"/><br>
+</p>
